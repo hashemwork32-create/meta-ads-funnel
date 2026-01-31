@@ -1,92 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schedule Your Strategy Call - Meta Ads Specialist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Lato', sans-serif; background-color: #f8f8f6; color: #2a2a2a; line-height: 1.6; }
-        .container { max-width: 1280px; margin: 0 auto; padding: 3rem 1rem; }
-        .booking-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-        .booking-left h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: #1a1a1a; line-height: 1.2; margin-bottom: 1rem; font-weight: 700; letter-spacing: 0.5px; }
-        .booking-left p { font-size: 1.125rem; color: #8b9a8f; font-weight: 300; margin-bottom: 2rem; }
-        .divider { height: 1px; background: linear-gradient(to right, transparent, #d4af37, transparent); margin: 2rem 0; }
-        .benefits-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
-        .benefit-item { display: flex; gap: 1rem; align-items: flex-start; }
-        .benefit-icon { width: 24px; height: 24px; border-radius: 50%; background-color: #d4af37; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.25rem; }
-        .benefit-icon svg { width: 12px; height: 12px; color: #1a1a1a; }
-        .benefit-content h3 { font-weight: 600; color: #1a1a1a; margin-bottom: 0.25rem; font-size: 1rem; }
-        .benefit-content p { color: #8b9a8f; font-size: 0.875rem; margin: 0; }
-        .prep-box { background-color: #efefeb; border-radius: 0.5rem; padding: 1.5rem; margin-top: 2rem; }
-        .prep-box p { font-size: 0.875rem; color: #2a2a2a; margin: 0; }
-        .prep-box strong { font-weight: 600; }
-        .booking-right { animation: fadeIn 0.6s ease-in-out; animation-delay: 0.2s; }
-        .google-wrapper { background: white; border: 1px solid #e8e8e4; border-radius: 0.5rem; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); padding: 1rem; text-align: center; }
-        .google-button { background: #4285F4; color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-size: 16px; display: inline-block; margin-top: 20px; transition: background 0.3s; }
-        .google-button:hover { background: #3367D6; }
-        .google-note { font-size: 0.75rem; color: #8b9a8f; text-align: center; margin-top: 1rem; }
-        .fade-in { animation: fadeIn 0.6s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 1024px) { .booking-content { grid-template-columns: 1fr; gap: 2rem; } .booking-left h1 { font-size: 2.5rem; } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Meeting with Hashem</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #f8f8f6;
+      color: #2a2a2a;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #8b9a8f;
+    }
+
+    .left {
+      padding-top: 1rem;
+    }
+
+    .right {
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid #e8e8e4;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .calendly-inline-widget {
+      min-width: 320px;
+      height: 650px;
+    }
+
+    @media (max-width: 1024px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="booking-content">
-            <div class="booking-left fade-in">
-                <h1>Schedule Your Strategy Call</h1>
-                <p>Helping luxury pet furniture e-commerce brands fix unstable sales and scale over time using Meta Ads</p>
 
-                <div class="divider"></div>
+  <div class="container">
+    <div class="content">
 
-                <div class="benefits-list">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        </div>
-                        <div class="benefit-content">
-                            <h3>Analyze Current Ads</h3>
-                            <p>We review your Meta Ads campaigns to find leaks and opportunities for improvement</p>
-                        </div>
-                    </div>
+      <div class="left">
+        <h1>Book a meeting with Hashem</h1>
+        <p>
+          Schedule a short call to review your Meta Ads,
+          identify what’s causing unstable sales,
+          and see if we’re a good fit to work together.
+        </p>
+      </div>
 
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        </div>
-                        <div class="benefit-content">
-                            <h3>Stabilize Sales</h3>
-                            <p>Fix fluctuations in your monthly revenue and create predictable performance</p>
-                        </div>
-                    </div>
-
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        </div>
-                        <div class="benefit-content">
-                            <h3>Scale Over Time</h3>
-                            <p>Implement tested strategies to grow revenue steadily over the next months</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="prep-box">
-                    <p><strong>Prepare for the call:</strong> Have your store analytics and ad performance data ready so I can give you precise recommendations.</p>
-                </div>
-            </div>
-
-            <div class="booking-right">
-                <div class="google-wrapper">
-                    <p>Click the button below to schedule your 45-minute call and get your Google Meet link:</p>
-                    <!-- Replace the href with your actual Google Calendar event link -->
-                    <a class="google-button" href="https://calendar.google.com/calendar/r/eventedit?text=Strategy+Call&details=45-minute+call+to+fix+unstable+sales+and+scale&location=Google+Meet+link+will+be+sent&dates=20260131T100000/20260131T104500" target="_blank">Schedule Call</a>
-                </div>
-                <p class="google-note">All calls are conducted via Google Meet. Select a time that works best for you.</p>
-            </div>
+      <div class="right">
+        <div 
+          class="calendly-inline-widget"
+          data-url="https://calendly.com/hashemconsulting32/30min">
         </div>
+      </div>
+
     </div>
+  </div>
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
 </body>
 </html>
