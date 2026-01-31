@@ -1,0 +1,97 @@
+<!-- index.html -->
+<section>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input, textarea, select {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .success-message {
+      display: none;
+      color: green;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+
+  <div class="container">
+    <h1>Application Form</h1>
+    <form id="applicationForm">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required>
+      <textarea id="message" placeholder="Your Message / Details" rows="4"></textarea>
+      <button type="submit">Submit Application</button>
+      <div class="success-message" id="successMessage">Thank you! Redirecting...</div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('applicationForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // جمع البيانات
+      const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        message: document.getElementById('message').value
+      };
+
+      // حفظ البيانات (مثال: Local Storage)
+      localStorage.setItem('applicationData', JSON.stringify(data));
+
+      // إظهار رسالة النجاح
+      successMessage.style.display = 'block';
+
+      // Redirect بعد ثانيتين
+      setTimeout(() => {
+        window.location.href = 'thankyou.html';
+      }, 2000);
+    });
+  </script>
+</section>
