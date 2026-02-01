@@ -88,6 +88,12 @@ body {
 .radio-option {
   display: flex;
   gap: 0.75rem;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.radio-option:hover {
+  color: #d4af37;
 }
 
 input[type="radio"] {
@@ -147,7 +153,6 @@ input[type="text"] {
 
 <form id="surveyForm">
 
-<!-- Question 1 -->
 <div class="question-card">
 <h3>What is your most active social media page?</h3>
 <div class="radio-group">
@@ -160,7 +165,6 @@ input[type="text"] {
 <div class="error-message" id="error_socialMedia"></div>
 </div>
 
-<!-- Question 2 -->
 <div class="question-card">
 <h3>What is your brand's current average monthly revenue?</h3>
 <div class="radio-group">
@@ -173,7 +177,6 @@ input[type="text"] {
 <div class="error-message" id="error_monthlyRevenue"></div>
 </div>
 
-<!-- Question 3 -->
 <div class="question-card">
 <h3>How much does your brand currently spend on Facebook/Instagram ads each month?</h3>
 <div class="radio-group">
@@ -186,14 +189,12 @@ input[type="text"] {
 <div class="error-message" id="error_adSpend"></div>
 </div>
 
-<!-- Question 4 (MANUAL INPUT ONLY) -->
 <div class="question-card">
 <h3>What is your monthly revenue target for the next 3 months?</h3>
 <input type="text" name="revenueTarget" placeholder="e.g. $73,500">
 <div class="error-message" id="error_revenueTarget"></div>
 </div>
 
-<!-- Question 5 -->
 <div class="question-card">
 <h3>What is the biggest marketing challenge you currently face on Facebook/Instagram?</h3>
 <div class="radio-group">
@@ -235,11 +236,7 @@ function updateProgress() {
 }
 
 form.addEventListener('input', updateProgress);
-
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  updateProgress();
-});
+form.addEventListener('submit', e => { e.preventDefault(); updateProgress(); });
 </script>
 
 </body>
