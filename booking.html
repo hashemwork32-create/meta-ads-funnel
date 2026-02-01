@@ -2,82 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Book a Meeting with Hashem</title>
+  <title>Book a Call</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;600&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Lato', sans-serif;
-      background: #f8f8f6;
-      color: #1a1a1a;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 3rem 1rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-      color: #7c8a80;
-      max-width: 420px;
-    }
-
-    .calendly-box {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      overflow: hidden;
-    }
-
-    .calendly-inline-widget {
-      height: 650px;
-      min-width: 320px;
-    }
-
-    @media (max-width: 900px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 
-<body>
+<body style="margin:0">
 
-  <div class="container">
-    <div>
-      <h1>Book a meeting with Hashem</h1>
-      <p>
-        Schedule a 30-minute call to review your Meta Ads,
-        identify what’s blocking growth,
-        and see if I can realistically help you.
-      </p>
-    </div>
-
-    <div class="calendly-box">
-      <div
-        class="calendly-inline-widget"
-        data-url="https://calendly.com/hashemconsulting32/30min">
-      </div>
-    </div>
+  <!-- Calendly inline widget -->
+  <div
+    class="calendly-inline-widget"
+    data-url="https://calendly.com/hashemconsulting32/30min"
+    style="min-width:320px;height:700px;">
   </div>
 
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script
+    src="https://assets.calendly.com/assets/external/widget.js"
+    async>
+  </script>
 
 </body>
 </html>
