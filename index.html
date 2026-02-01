@@ -43,7 +43,6 @@ body {
 
 .progress-section {
   margin-bottom: 3rem;
-  animation: fadeIn 0.6s ease-in-out;
 }
 
 .progress-header {
@@ -95,14 +94,13 @@ input[type="radio"] {
   accent-color: #d4af37;
 }
 
-textarea {
+input[type="text"] {
   width: 100%;
-  min-height: 90px;
   padding: 0.75rem;
-  border-radius: 0.5rem;
+  font-size: 1rem;
   border: 1px solid #e8e8e4;
+  border-radius: 0.5rem;
   font-family: 'Lato', sans-serif;
-  resize: vertical;
 }
 
 .error-message {
@@ -188,10 +186,10 @@ textarea {
 <div class="error-message" id="error_adSpend"></div>
 </div>
 
-<!-- Question 4 (TEXT BOX ONLY CHANGE) -->
+<!-- Question 4 (MANUAL INPUT ONLY) -->
 <div class="question-card">
 <h3>What is your monthly revenue target for the next 3 months?</h3>
-<textarea name="revenueTarget" placeholder="Enter your target revenue"></textarea>
+<input type="text" name="revenueTarget" placeholder="e.g. $73,500">
 <div class="error-message" id="error_revenueTarget"></div>
 </div>
 
