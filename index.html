@@ -37,21 +37,32 @@
             color: #1a1a1a;
             margin-bottom: 1rem;
             font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .header p {
             font-size: 1.125rem;
             color: #8b9a8f;
+            font-weight: 300;
         }
 
         .progress-section {
             margin-bottom: 3rem;
+            animation: fadeIn 0.6s ease-in-out;
+            animation-delay: 0.1s;
         }
 
         .progress-header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 1rem;
+        }
+
+        .progress-header span {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #1a1a1a;
         }
 
         .progress-bar {
@@ -68,18 +79,26 @@
             transition: width 0.5s ease-in-out;
         }
 
+        .form-section {
+            animation: fadeIn 0.6s ease-in-out;
+            animation-delay: 0.2s;
+        }
+
         .question-card {
             background: white;
             border: 1px solid #e8e8e4;
             border-radius: 0.5rem;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         .question-card h3 {
             font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: #1a1a1a;
             margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
         .radio-group {
@@ -90,11 +109,27 @@
 
         .radio-option {
             display: flex;
+            align-items: center;
             gap: 0.75rem;
+            cursor: pointer;
         }
 
-        .radio-option input {
+        .radio-option input[type="radio"] {
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
             accent-color: #d4af37;
+        }
+
+        .radio-option label {
+            cursor: pointer;
+            color: #2a2a2a;
+            transition: color 0.2s ease-in-out;
+            font-size: 1rem;
+        }
+
+        .radio-option:hover label {
+            color: #d4af37;
         }
 
         .error-message {
@@ -105,158 +140,292 @@
 
         .submit-btn {
             width: 100%;
-            padding: 0.75rem;
+            padding: 0.75rem 2rem;
             background-color: #d4af37;
+            color: #1a1a1a;
             border: none;
             border-radius: 0.5rem;
+            font-size: 1rem;
             font-weight: 600;
+            letter-spacing: 0.5px;
             cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin-top: 2rem;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            transform: scale(1.02);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .question-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>Qualify Your Business</h1>
+            <p>Help us understand your brand better so we can create a personalized strategy</p>
+        </div>
 
-<div class="container">
-    <div class="header">
-        <h1>Qualify Your Business</h1>
-        <p>Help me understand your brand better so I can create a personalized strategy</p>
+        <div class="progress-section">
+            <div class="progress-header">
+                <span>Progress</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <form id="surveyForm" class="form-section">
+            <!-- Question 1 -->
+            <div class="question-card">
+                <h3>What is your most active social media page?</h3>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="q1_instagram" name="socialMedia" value="Instagram">
+                        <label for="q1_instagram">Instagram</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q1_facebook" name="socialMedia" value="Facebook">
+                        <label for="q1_facebook">Facebook</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q1_tiktok" name="socialMedia" value="TikTok">
+                        <label for="q1_tiktok">TikTok</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q1_pinterest" name="socialMedia" value="Pinterest">
+                        <label for="q1_pinterest">Pinterest</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q1_other" name="socialMedia" value="Other">
+                        <label for="q1_other">Other</label>
+                    </div>
+                </div>
+                <div class="error-message" id="error_socialMedia"></div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-card">
+                <h3>What is your brand's current average monthly revenue?</h3>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="q2_1" name="monthlyRevenue" value="$0 - $10,000">
+                        <label for="q2_1">$0 - $10,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q2_2" name="monthlyRevenue" value="$10,000 - $50,000">
+                        <label for="q2_2">$10,000 - $50,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q2_3" name="monthlyRevenue" value="$50,000 - $100,000">
+                        <label for="q2_3">$50,000 - $100,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q2_4" name="monthlyRevenue" value="$100,000 - $250,000">
+                        <label for="q2_4">$100,000 - $250,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q2_5" name="monthlyRevenue" value="$250,000+">
+                        <label for="q2_5">$250,000+</label>
+                    </div>
+                </div>
+                <div class="error-message" id="error_monthlyRevenue"></div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-card">
+                <h3>How much does your brand currently spend on Facebook/Instagram ads each month?</h3>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="q3_1" name="adSpend" value="$0 - $1,000">
+                        <label for="q3_1">$0 - $1,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q3_2" name="adSpend" value="$1,000 - $5,000">
+                        <label for="q3_2">$1,000 - $5,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q3_3" name="adSpend" value="$5,000 - $10,000">
+                        <label for="q3_3">$5,000 - $10,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q3_4" name="adSpend" value="$10,000 - $25,000">
+                        <label for="q3_4">$10,000 - $25,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q3_5" name="adSpend" value="$25,000+">
+                        <label for="q3_5">$25,000+</label>
+                    </div>
+                </div>
+                <div class="error-message" id="error_adSpend"></div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-card">
+                <h3>What is your monthly revenue target for the next 3 months?</h3>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="q4_1" name="revenueTarget" value="$10,000 - $25,000">
+                        <label for="q4_1">$10,000 - $25,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q4_2" name="revenueTarget" value="$25,000 - $50,000">
+                        <label for="q4_2">$25,000 - $50,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q4_3" name="revenueTarget" value="$50,000 - $100,000">
+                        <label for="q4_3">$50,000 - $100,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q4_4" name="revenueTarget" value="$100,000 - $250,000">
+                        <label for="q4_4">$100,000 - $250,000</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q4_5" name="revenueTarget" value="$250,000+">
+                        <label for="q4_5">$250,000+</label>
+                    </div>
+                </div>
+                <div class="error-message" id="error_revenueTarget"></div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-card">
+                <h3>What is the biggest marketing challenge you currently face on Facebook/Instagram?</h3>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="q5_1" name="marketingChallenge" value="Low conversion rates">
+                        <label for="q5_1">Low conversion rates</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q5_2" name="marketingChallenge" value="High cost per acquisition">
+                        <label for="q5_2">High cost per acquisition</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q5_3" name="marketingChallenge" value="Poor audience targeting">
+                        <label for="q5_3">Poor audience targeting</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q5_4" name="marketingChallenge" value="Ad fatigue & declining ROAS">
+                        <label for="q5_4">Ad fatigue & declining ROAS</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q5_5" name="marketingChallenge" value="Not sure where to start">
+                        <label for="q5_5">Not sure where to start</label>
+                    </div>
+                </div>
+                <div class="error-message" id="error_marketingChallenge"></div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Book Your Strategy Call</button>
+        </form>
     </div>
 
-    <div class="progress-section">
-        <div class="progress-header">
-            <span>Progress</span>
-            <span id="progressPercent">0%</span>
-        </div>
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-    </div>
+    <script>
+        const form = document.getElementById('surveyForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const progressFill = document.getElementById('progressFill');
+        const progressPercent = document.getElementById('progressPercent');
 
-    <form id="surveyForm">
+        const questions = ['socialMedia', 'monthlyRevenue', 'adSpend', 'revenueTarget', 'marketingChallenge'];
 
-        <!-- Q1 -->
-        <div class="question-card">
-            <h3>What is your most active social media page?</h3>
-            <div class="radio-group">
-                <label class="radio-option"><input type="radio" name="socialMedia" value="Instagram"> Instagram</label>
-                <label class="radio-option"><input type="radio" name="socialMedia" value="Facebook"> Facebook</label>
-                <label class="radio-option"><input type="radio" name="socialMedia" value="TikTok"> TikTok</label>
-                <label class="radio-option"><input type="radio" name="socialMedia" value="Pinterest"> Pinterest</label>
-                <label class="radio-option"><input type="radio" name="socialMedia" value="Other"> Other</label>
-            </div>
-            <div class="error-message" id="error_socialMedia"></div>
-        </div>
-
-        <!-- Q2 -->
-        <div class="question-card">
-            <h3>What is your brand's current average monthly revenue?</h3>
-            <div class="radio-group">
-                <label class="radio-option"><input type="radio" name="monthlyRevenue" value="$0-$10k"> $0 - $10,000</label>
-                <label class="radio-option"><input type="radio" name="monthlyRevenue" value="$10k-$50k"> $10,000 - $50,000</label>
-                <label class="radio-option"><input type="radio" name="monthlyRevenue" value="$50k-$100k"> $50,000 - $100,000</label>
-                <label class="radio-option"><input type="radio" name="monthlyRevenue" value="$100k-$250k"> $100,000 - $250,000</label>
-                <label class="radio-option"><input type="radio" name="monthlyRevenue" value="$250k+"> $250,000+</label>
-            </div>
-            <div class="error-message" id="error_monthlyRevenue"></div>
-        </div>
-
-        <!-- Q3 -->
-        <div class="question-card">
-            <h3>How much do you spend on Meta ads monthly?</h3>
-            <div class="radio-group">
-                <label class="radio-option"><input type="radio" name="adSpend" value="$0-$1k"> $0 - $1,000</label>
-                <label class="radio-option"><input type="radio" name="adSpend" value="$1k-$5k"> $1,000 - $5,000</label>
-                <label class="radio-option"><input type="radio" name="adSpend" value="$5k-$10k"> $5,000 - $10,000</label>
-                <label class="radio-option"><input type="radio" name="adSpend" value="$10k-$25k"> $10,000 - $25,000</label>
-                <label class="radio-option"><input type="radio" name="adSpend" value="$25k+"> $25,000+</label>
-            </div>
-            <div class="error-message" id="error_adSpend"></div>
-        </div>
-
-        <!-- Q4 (MODIFIED ONLY) -->
-        <div class="question-card">
-            <h3>What is your main goal for the next 3 months?</h3>
-            <textarea
-                id="revenueTarget"
-                name="revenueTarget"
-                rows="4"
-                placeholder="Example: Reach $50k/month consistently while stabilizing ROAS and reducing CPA"
-                style="width:100%;padding:12px;border:1px solid #e8e8e4;border-radius:8px;font-family:'Lato',sans-serif;">
-            </textarea>
-            <div class="error-message" id="error_revenueTarget"></div>
-        </div>
-
-        <!-- Q5 -->
-        <div class="question-card">
-            <h3>Biggest Meta Ads challenge?</h3>
-            <div class="radio-group">
-                <label class="radio-option"><input type="radio" name="marketingChallenge" value="Low conversion"> Low conversion rates</label>
-                <label class="radio-option"><input type="radio" name="marketingChallenge" value="High CPA"> High CPA</label>
-                <label class="radio-option"><input type="radio" name="marketingChallenge" value="Targeting"> Poor targeting</label>
-                <label class="radio-option"><input type="radio" name="marketingChallenge" value="Ad fatigue"> Ad fatigue</label>
-                <label class="radio-option"><input type="radio" name="marketingChallenge" value="Unsure"> Not sure</label>
-            </div>
-            <div class="error-message" id="error_marketingChallenge"></div>
-        </div>
-
-        <button class="submit-btn" type="submit">Book Your Strategy Call</button>
-    </form>
-</div>
-
-<script>
-const questions = ['socialMedia','monthlyRevenue','adSpend','revenueTarget','marketingChallenge'];
-const progressFill = document.getElementById('progressFill');
-const progressPercent = document.getElementById('progressPercent');
-
-function updateProgress() {
-    let answered = 0;
-    questions.forEach(q => {
-        if (q === 'revenueTarget') {
-            if (document.getElementById('revenueTarget').value.trim()) answered++;
-        } else {
-            if (document.querySelector(`input[name="${q}"]:checked`)) answered++;
+        // Update progress bar
+        function updateProgress() {
+            let answered = 0;
+            questions.forEach(q => {
+                if (document.querySelector(`input[name="${q}"]:checked`)) {
+                    answered++;
+                }
+            });
+            const percentage = (answered / questions.length) * 100;
+            progressFill.style.width = percentage + '%';
+            progressPercent.textContent = Math.round(percentage) + '%';
         }
-    });
-    const percent = Math.round((answered / questions.length) * 100);
-    progressFill.style.width = percent + '%';
-    progressPercent.textContent = percent + '%';
-}
 
-document.querySelectorAll('input[type="radio"]').forEach(r =>
-    r.addEventListener('change', updateProgress)
-);
+        // Add change listeners to all radio buttons
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                updateProgress();
+                // Clear error
+                const errorElement = document.getElementById(`error_${this.name}`);
+                if (errorElement) {
+                    errorElement.textContent = '';
+                }
+            });
+        });
 
-document.getElementById('revenueTarget').addEventListener('input', () => {
-    updateProgress();
-    document.getElementById('error_revenueTarget').textContent = '';
-});
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-document.getElementById('surveyForm').addEventListener('submit', e => {
-    e.preventDefault();
-    let isValid = true;
+            let isValid = true;
+            const answers = {};
 
-    questions.forEach(q => {
-        const error = document.getElementById(`error_${q}`);
-        if (q === 'revenueTarget') {
-            if (!document.getElementById('revenueTarget').value.trim()) {
-                error.textContent = 'Please describe your goal';
-                isValid = false;
+            // Validate all questions
+            questions.forEach(q => {
+                const checked = document.querySelector(`input[name="${q}"]:checked`);
+                const errorElement = document.getElementById(`error_${q}`);
+
+                if (!checked) {
+                    errorElement.textContent = `Please select an option`;
+                    isValid = false;
+                } else {
+                    answers[q] = checked.value;
+                    errorElement.textContent = '';
+                }
+            });
+
+            if (isValid) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Processing...';
+
+                // Get previous lead data
+                const leadData = JSON.parse(localStorage.getItem('leadData') || '{}');
+                const completeData = { ...leadData, ...answers };
+
+                // Store combined data
+                localStorage.setItem('leadData', JSON.stringify(completeData));
+
+                // Redirect to booking page
+                // https://calendly.com/hashemconsulting32/45min
+                setTimeout(() => {
+                    window.location.href = '/booking';
+                }, 500);
             }
-        } else {
-            if (!document.querySelector(`input[name="${q}"]:checked`)) {
-                error.textContent = 'Please select an option';
-                isValid = false;
-            }
-        }
-    });
+        });
 
-    if (isValid) {
-        window.location.href = '/booking';
-    }
-});
-
-updateProgress();
-</script>
-
+        // Initial progress update
+        updateProgress();
+    </script>
 </body>
 </html>
