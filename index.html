@@ -226,7 +226,7 @@ function updateProgress() {
     if (f === 'revenueTarget') {
       if (form.revenueTarget.value.trim() !== '') answered++;
     } else {
-      if (document.querySelector(input[name="${f}"]:checked)) answered++;
+      if (document.querySelector(`input[name="${f}"]:checked`)) answered++;
     }
   });
 
