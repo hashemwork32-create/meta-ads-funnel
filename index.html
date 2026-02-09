@@ -226,7 +226,7 @@ function updateProgress() {
     if (f === 'revenueTarget') {
       if (form.revenueTarget.value.trim() !== '') answered++;
     } else {
-      if (document.querySelector(`input[name="${f}"]:checked`)) answered++;
+      if (document.querySelector(input[name="${f}"]:checked)) answered++;
     }
   });
 
@@ -236,34 +236,7 @@ function updateProgress() {
 }
 
 form.addEventListener('input', updateProgress);
-
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  updateProgress();
-
-  const answers = {
-    socialMedia: form.socialMedia.value,
-    monthlyRevenue: form.monthlyRevenue.value,
-    adSpend: form.adSpend.value,
-    revenueTarget: form.revenueTarget.value,
-    marketingChallenge: form.marketingChallenge.value
-  };
-
-  fetch("https://script.google.com/macros/s/AKfycbyMTo8i_TSk3mAfYN4HcdWJepEAavxh2ViSc8a_lCqHsnYhGbICfZsmMWSYqJNx3inntA/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      socialMedia: answers.socialMedia,
-      averageMonthlyRevenue: answers.monthlyRevenue,
-      adSpend: answers.adSpend,
-      revenueTarget: answers.revenueTarget,
-      marketingChallenge: answers.marketingChallenge,
-      timestamp: new Date().toISOString()
-    })
-  });
-});
+form.addEventListener('submit', e => { e.preventDefault(); updateProgress(); });
 </script>
 
 </body>
