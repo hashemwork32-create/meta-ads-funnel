@@ -409,29 +409,33 @@ form.addEventListener('submit', function(e) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Processing...';
 
-    fetch("https://script.google.com/macros/s/AKfycbyfwdiHbh-jQpLZFdcRpCVSpyNVk5twIiCOatfFyPCV_LGT-SU07URuyut438WiciW-/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            socialMedia: answers.socialMedia,
-            monthlyRevenue: answers.monthlyRevenue,
-            adSpend: answers.adSpend,
-            revenueTarget: answers.revenueTarget,
-            marketingChallenge: answers.marketingChallenge,
-            timestamp: new Date().toISOString()
-        })
+fetch("https://formspree.io/f/xaqdngkq", {
+    method: "POST",
+    headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        socialMedia: answers.socialMedia,
+        monthlyRevenue: answers.monthlyRevenue,
+        adSpend: answers.adSpend,
+        revenueTarget: answers.revenueTarget,
+        marketingChallenge: answers.marketingChallenge,
+        timestamp: new Date().toISOString()
     })
-    .then(() => {
+})
+.then(response => {
+    if (response.ok) {
         window.location.href = "https://calendly.com/hashemconsulting32/45min";
-    })
-    .catch(error => {
-        alert("Submission failed. Try again.");
-        console.error(error);
+    } else {
+        alert("Submission failed. Please try again.");
         submitBtn.disabled = false;
         submitBtn.textContent = 'Book Your Strategy Call';
-    });
+    }
+})
+.catch(error => {
+    console.error("Error:", error);
+    window.location.href = "https://calendly.com/hashemconsulting32/45min";
 });
 
 
