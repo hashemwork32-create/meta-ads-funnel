@@ -385,44 +385,55 @@
             });
         });
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-            let isValid = true;
-            const answers = {};
+    let isValid = true;
+    const answers = {};
 
-            // Validate all questions
-            questions.forEach(q => {
-                const checked = document.querySelector(`input[name="${q}"]:checked`);
-                const errorElement = document.getElementById(`error_${q}`);
+    questions.forEach(q => {
+        const checked = document.querySelector(`input[name="${q}"]:checked`);
+        const errorElement = document.getElementById(`error_${q}`);
 
-                if (!checked) {
-                    errorElement.textContent = `Please select an option`;
-                    isValid = false;
-                } else {
-                    answers[q] = checked.value;
-                    errorElement.textContent = '';
-                }
-            });
+        if (!checked) {
+            errorElement.textContent = `Please select an option`;
+            isValid = false;
+        } else {
+            answers[q] = checked.value;
+            errorElement.textContent = '';
+        }
+    });
 
-            if (isValid) {
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Processing...';
+    if (!isValid) return;
 
-                // Get previous lead data
-                const leadData = JSON.parse(localStorage.getItem('leadData') || '{}');
-                const completeData = { ...leadData, ...answers };
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Processing...';
 
-                // Store combined data
-                localStorage.setItem('leadData', JSON.stringify(completeData));
+    fetch("https://script.google.com/macros/s/AKfycbz6oJoTZ7z374_3NSo8KI-hIlmJbitZg6c_8NsdirjoOogUSP8QCZGPye8VkpoVRkHl0Q/exec", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            socialMedia: answers.socialMedia,
+            monthlyRevenue: answers.monthlyRevenue,
+            adSpend: answers.adSpend,
+            revenueTarget: answers.revenueTarget,
+            marketingChallenge: answers.marketingChallenge,
+            timestamp: new Date().toISOString()
+        })
+    })
+    .then(() => {
+        window.location.href = "https://calendly.com/hashemconsulting32/45min";
+    })
+    .catch(error => {
+        alert("Submission failed. Try again.");
+        console.error(error);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Book Your Strategy Call';
+    });
+});
 
-                // Redirect to booking page
-                // https://calendly.com/hashemconsulting32/45min
-                setTimeout(() => {
-                    window.location.href = '/booking';
-                }, 500);
-            }
-        });
 
         // Initial progress update
         updateProgress();
